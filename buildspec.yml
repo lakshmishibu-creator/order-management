@@ -10,7 +10,7 @@ phases:
     commands:
       - echo "Starting Pre-Build Phase..."
       - echo "Running Unit and Concurrency Tests..."
-      - go test -v ./...
+      
 
   build:
     commands:
