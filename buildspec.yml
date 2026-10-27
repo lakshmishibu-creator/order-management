@@ -3,25 +3,23 @@ version: 0.2
 
 phases:
   install:
-    runtime-versions:
-      golang: 1.22
+    commands:
+      - echo "Checking Go version..."
+      - go version
 
   pre_build:
     commands:
-      - echo "Starting Pre-Build Phase..."
-      - echo "Running Unit and Concurrency Tests..."
-      
+      - echo "Preparing application build..."
 
   build:
     commands:
-      - echo "Starting Build Phase..."
-      - echo "Compiling Go binary for 64-bit Linux deployment..."
+      - echo "Building Order Management application..."
       - mkdir -p bin
       - CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags="-w -s" -o bin/application main.go
 
   post_build:
     commands:
-      - echo "Build and test phases completed successfully on $(date)."
+      - echo "Application build completed successfully."
 
 artifacts:
   files:
@@ -29,3 +27,4 @@ artifacts:
     - Procfile
     - .env.example
   discard-paths: no
+
